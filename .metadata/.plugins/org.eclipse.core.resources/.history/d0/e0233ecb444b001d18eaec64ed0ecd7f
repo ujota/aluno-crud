@@ -1,0 +1,41 @@
+package br.edu.unasp.aluno.controller;
+
+
+@RestController
+public class AlunoController {
+	
+	
+	@Autowired
+	private AlunoService alunoService;
+
+	@GetMapping("/aluno")
+	@CrossOrigin(origins="*")
+	public ResponseEntity<Iterable<Aluno>> getAluno(){
+		return ResponseEntity.ok().body(alunoService.getCliente());
+	}
+	@GetMapping("/aluno/{id}")
+	@CrossOrigin(origins="*")
+	public ResponseEntity<Aluno> getAluno(@PathVariable Long id){
+		return ResponseEntity.ok().body(alunoService.getCliente(id));
+	}
+	
+	@PostMapping("/aluno")
+	@CrossOrigin(origins="*")
+	public ResponseEntity<Void> adicionarAluno(@RequestBody Aluno cliente){
+		clienteService.createCliente(aluno);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/aluno")
+	@CrossOrigin(origins="*")
+	public ResponseEntity<Void> updateAluno(@RequestBody Aluno aluno){
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	@DeleteMapping("/aluno/{id}")
+	@CrossOrigin(origins="*")
+	public ResponseEntity<Void> deletarAluno(@PathVariable Long id){
+		var alu = alunoService.getAluno(id);
+		alunoService.deleteAluno(alu);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+}
